@@ -1,0 +1,270 @@
+// Copyright 2022 Mubsira | Islamic Website
+// Author Aji Santoso
+
+// SCSS Variable Declarations
+$chinese-black: #111111;
+$topaz: #fcc983;
+$eerie-black: #211d18;
+$white: #ffffff;
+$argent: #c0c0c0;
+
+// Font-face
+@font-face {
+  font-family: 'Italiana';
+  src: url('../font/Italiana.ttf');
+}
+@font-face {
+  font-family: 'Inter';
+  src: url('../font/Inter.ttf');
+}
+
+// Keyframes
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 $topaz;
+  }
+}
+
+// Mixin
+// Typography
+@mixin typography($font-family, $font-size, $font-weight, $color) {
+  font-family: $font-family;
+  font-size: $font-size;
+  font-weight: $font-weight;
+  color: $color;
+  letter-spacing: 0.5%;
+  margin-bottom: 0;
+}
+// Button
+@mixin button($background-color, $color, $border: none) {
+  background-color: $background-color;
+  color: $color;
+  border: $border;
+  padding: 0.8em 1.5em;
+  font-weight: 600;
+  transition: ease-out 0.5s;
+  -webkit-transition: ease-out 0.5s;
+  -moz-transition: ease-out 0.5s;
+  &:hover,
+  &:active,
+  &:focus {
+    background-color: $background-color;
+    color: $color;
+    border: $border;
+    animation: pulse 1.5s;
+    box-shadow: 0 0 0 0.5em transparent;
+    opacity: 0.9;
+  }
+}
+
+// Typography
+h1 {
+  @include typography('Italiana', 180px, 400, $white);
+} // Heading 1
+h2 {
+  @include typography('Italiana', 48px, 400, $white);
+} // Heading 2
+h3 {
+  @include typography('Inter', 40px, 400, $white);
+} // Heading 3
+h4 {
+  @include typography('Inter', 28px, 600, $topaz);
+} // Heading 4
+h5 {
+  @include typography('Inter', 12px, 400, $argent);
+} // Caption
+p {
+  @include typography('Inter', 18px, 400, $white);
+} // Paragraph
+
+// Button
+.btn-primary {
+  @include button($topaz, $chinese-black);
+} // Button Primary
+.btn-secondary {
+  @include button(transparent, $topaz, 2px solid $topaz);
+} // Button Secondary
+
+// CSS Body Reset
+body {
+  margin: 0;
+  padding: 0;
+  background-color: $eerie-black;
+  input,
+  button,
+  textarea {
+    &:hover,
+    &:active,
+    &:focus {
+      outline: none !important;
+      box-shadow: none !important;
+    }
+  }
+  a {
+    text-decoration: none;
+  }
+  iconify-icon {
+    color: $topaz;
+  }
+}
+
+// Header Style
+header {
+  // Navbar
+  nav {
+    .navbar-brand {
+      img {
+        width: 50px;
+        height: 50px;
+        transition: ease-out 0.3s;
+        &:hover {
+          transform: rotateZ(-5deg) scale(1.2);
+        }
+      }
+    }
+    .navbar-toggler,
+    .offcanvas-header {
+      .iconify {
+        transition: ease-out 0.2s;
+        border-radius: 100%;
+        &:hover,
+        &:active,
+        &:focus {
+          animation: pulse 1s;
+          box-shadow: 0 0 0 0.5em transparent;
+          border-radius: 100%;
+          transform: scale(1.1);
+        }
+      }
+    }
+    .offcanvas {
+      .offcanvas-body {
+        .navbar-nav {
+          h5 {
+            color: $topaz;
+            &:hover,
+            &:active,
+            &:focus {
+              color: $white;
+            }
+          }
+          .active {
+            color: $white;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Main Style
+main {
+  // Home Style
+  .home {
+    height: auto;
+    min-height: 89vh;
+    margin-top: 11vh;
+    img {
+      width: 100%;
+      position: absolute;
+      top: 58%;
+      z-index: -1;
+    }
+    .row {
+      .col-sm-8 {
+        margin-top: 4.7%;
+        background-color: $eerie-black;
+        .line {
+          width: 100%;
+          height: 1px;
+          background-color: $white;
+          opacity: 10%;
+        }
+        iconify-icon {
+          &:hover {
+            color: $white;
+          }
+        }
+      }
+      .col-sm-2 {
+        .circle {
+          border-radius: 100%;
+          width: 170px;
+          height: 170px;
+          background-color: $topaz;
+          border: 7px solid $eerie-black;
+          margin-left: -2em;
+          p {
+            color: #111111;
+            font-weight: 600;
+          }
+          &:hover,
+          &:active,
+          &:focus {
+            animation: pulse 1s;
+            box-shadow: 0 0 0 0.8em transparent;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Mobile Configuration
+@media screen and (max-width: 768px) {
+  // Typography
+  h1 {
+    @include typography('Italiana', 80px, 400, $white);
+  } // Heading 1
+  h2 {
+    @include typography('Italiana', 32px, 400, $white);
+  } // Heading 2
+  h3 {
+    @include typography('Inter', 24px, 400, $white);
+  } // Heading 3
+  h4 {
+    @include typography('Inter', 24px, 600, $topaz);
+  } // Heading 4
+  h5 {
+    @include typography('Inter', 12px, 400, $argent);
+  } // Caption
+  p {
+    @include typography('Inter', 18px, 400, $white);
+  } // Paragraph
+
+  // Header Style
+  header {
+    nav {
+      .offcanvas {
+        background-color: $eerie-black;
+        width: 55% !important;
+        height: 475px;
+        margin: 3% 3% 3% 0;
+        border-radius: 30px;
+        .btn-secondary {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  // Main Style
+  main {
+    // Home Style
+    .home {
+      img {
+        top: 83%;
+      }
+      .row {
+        .col-sm-8 {
+        }
+        .col-sm-2 {
+          .circle {
+            float: right;
+            margin-right: 1em;
+          }
+        }
+      }
+    }
+  }
+}
